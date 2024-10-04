@@ -1,5 +1,5 @@
 import { products } from "../data/products.js";
-import { addToCart } from "../data/cart.js";
+import { addToCart, cart } from "../data/cart.js";
 import '../data/cart.js';
 
 let productHTML = '';
@@ -68,5 +68,18 @@ addToCartButton.forEach((button) => {
         const {productId} = button.dataset;
         
         addToCart(productId);
+
+        updateHeaderQuantity('.js-cart-quantity');
     });
 });
+
+function updateHeaderQuantity(selector) {
+  let cartQuantity = 0;
+
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+
+  document.querySelector(selector)
+    .innerHTML = cartQuantity;
+}
