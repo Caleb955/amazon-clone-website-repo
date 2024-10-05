@@ -90,4 +90,6 @@ function renderProducts() {
     document.querySelector(selector)
       .innerHTML = cartQuantity;
   }
+
+  updateHeaderQuantity('.js-cart-quantity');
 }

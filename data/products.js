@@ -50,7 +50,6 @@ export function loadProductFetch() {
       else return new Product(data)
     });
 
-    console.log(products);
     console.log('Load product successfull');
   });
 
