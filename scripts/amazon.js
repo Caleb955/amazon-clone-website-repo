@@ -48,13 +48,16 @@ function renderProducts() {
               </select>
             </div>
 
-            <div class="product-spacer"></div>
+            ${product.sizeUrl()}
 
+            <div class="product-spacer"></div>
+            
             <div class="added-to-cart">
-              <img src="images/icons/checkmark.png">
-              Added
+            <img src="images/icons/checkmark.png">
+            Added
             </div>
 
+            
             <button class="add-to-cart-button button-primary js-add-to-cart-button" data-product-id="${product.id}">
               Add to Cart
             </button>

@@ -11,15 +11,32 @@ class Product {
   priceCents;
 
   constructor(value) {
-      this.id = value.id;
-      this.image = value.image;
-      this.name = value.name;
-      this.rating = value.rating;
-      this.priceCents = value.priceCents;
+    this.id = value.id;
+    this.image = value.image;
+    this.name = value.name;
+    this.rating = value.rating;
+    this.priceCents = value.priceCents;
   }
 
   PriceUrl() {
-      return `$${formatCurrency(this.priceCents)}`;
+    return `$${formatCurrency(this.priceCents)}`;
+  }
+
+  sizeUrl() {
+    return '';
+  }
+}
+
+class Clothing extends Product {
+  sizeChartLink;
+
+  constructor(value) {
+    super(value)
+    this.sizeChartLink = value.sizeChartLink;
+  }
+
+  sizeUrl() {
+    return `<a href="${this.sizeChartLink}" target="_blank">view more size</a>`;
   }
 }
 
@@ -29,9 +46,11 @@ export function loadProductFetch() {
     return response.json();
   }).then((output) => {
     products = output.map((data) => {
-        return new Product(data)
+      if (data.type === 'clothing') return new Clothing(data);
+      else return new Product(data)
     });
 
+    console.log(products);
     console.log('Load product successfull');
   });
 
