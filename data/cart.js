@@ -22,7 +22,8 @@ export function addToCart(productId) {
     } else {
         cart.push({
             productId,
-            quantity: 1
+            quantity: 1,
+            deliveryOptionId: "1"
         });
     }
 
@@ -61,4 +62,11 @@ export function removeFromCart(productId) {
     const container = document.querySelector(`.js-cart-item-container-${productId}`);
 
     container.remove();
+}
+
+export function updateDeliveryOption(param1, param2) {
+    const matchingId = loopCart(param1);
+    
+    matchingId.deliveryOptionId = param2;
+    saveToStorage();
 }

@@ -1,10 +1,14 @@
 import { loadProductFetch, products } from "../data/products.js";
-import { cart, removeFromCart } from "../data/cart.js";
+import { cart, removeFromCart, updateDeliveryOption } from "../data/cart.js";
 import dayjs from '../dayjs/index.js';
 import { deliveryOptions } from "../data/deliveryOptions.js";
 import formatCurrency from "./utils/money.js";
 
 loadProductFetch().then(() => {
+    renderOrderSummary();
+});
+
+function renderOrderSummary() {
     let cartHTML = '';
     
     cart.forEach((cartItem) => {
@@ -25,6 +29,20 @@ loadProductFetch().then(() => {
                 let day = date.format('dddd');
                 let month = date.format('MMMM');
                 let dayDate = date.format('DD');
+
+                if (day === 'Sunday') {
+                    callWeekend(1);
+                } else if (day === 'Saturday') {
+                    callWeekend(2);
+                }
+    
+                function callWeekend(param) {
+                    date = dayjs().add(option.deliveryDays + param, 'days');
+    
+                    day = date.format('dddd');
+                    month = date.format('MMMM');
+                    dayDate = date.format('DD');
+                }
                 
                 
                 dateString = `${day}, ${month} ${dayDate}`;
@@ -102,7 +120,7 @@ loadProductFetch().then(() => {
             const dateString = `${day}, ${month} ${dayDate}`;
             
             optionHTML += `
-                <div class="delivery-option">
+                <div class="delivery-option js-delivery-option" data-product-id="${productId}" data-option-Id="${option.id}">
                     <input type="radio" ${OptionId === option.id ? 'checked' : ''}
                     class="delivery-option-input"
                     name="delivery-option-${productId}">
@@ -134,4 +152,14 @@ loadProductFetch().then(() => {
             removeFromCart(productId);
         });
     });
-});
+
+    document.querySelectorAll('.js-delivery-option')
+        .forEach((option) => {
+            option.addEventListener('click', () => {
+                const {productId, optionId} = option.dataset;
+                
+                updateDeliveryOption(productId, optionId);
+                renderOrderSummary();
+            });
+        });
+}
