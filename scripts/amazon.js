@@ -1,5 +1,6 @@
 import { products, loadProductFetch } from "../data/products.js";
 import { addToCart, cart } from "../data/cart.js";
+import '../data/cart.js';
 
 loadProductFetch().then(() => {
   renderProducts();
