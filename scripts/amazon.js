@@ -1,5 +1,5 @@
 import { products, loadProductFetch } from "../data/products.js";
-import { addToCart, cart } from "../data/cart.js";
+import { addToCart, updateHeaderQuantity} from "../data/cart.js";
 import '../data/cart.js';
 
 loadProductFetch().then(() => {
@@ -80,17 +80,6 @@ function renderProducts() {
           updateHeaderQuantity('.js-cart-quantity');
       });
   });
-
-  function updateHeaderQuantity(selector) {
-    let cartQuantity = 0;
-
-    cart.forEach((cartItem) => {
-      cartQuantity += cartItem.quantity;
-    });
-
-    document.querySelector(selector)
-      .innerHTML = cartQuantity;
-  }
 
   updateHeaderQuantity('.js-cart-quantity');
 }

@@ -64,10 +64,6 @@ export function removeFromCart(productId) {
     cart = newArray;
 
     saveToStorage();
-
-    const container = document.querySelector(`.js-cart-item-container-${productId}`);
-
-    container.remove();
 }
 
 export function updateDeliveryOption(param1, param2) {
@@ -76,3 +72,14 @@ export function updateDeliveryOption(param1, param2) {
     matchingId.deliveryOptionId = param2;
     saveToStorage();
 }
+
+export function updateHeaderQuantity(selector) {
+    let cartQuantity = 0;
+
+    cart.forEach((cartItem) => {
+      cartQuantity += cartItem.quantity;
+    });
+
+    document.querySelector(selector)
+      .innerHTML = cartQuantity;
+  }
