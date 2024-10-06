@@ -3,6 +3,11 @@ import { products } from "../../data/products.js";
 import { deliveryOptions } from "../../data/deliveryOptions.js";
 import formatCurrency from "../utils/money.js";
 
+// these import code conflict with the test code so u can comment it and all the test will pass :)
+// and also the function createOrder that was run in the place your order button
+
+import { createOrder } from "../orders/Order.js";
+
 export function renderPaymentSummary() {
     let productTotal = 0;
     let shippingTotal = 0;
@@ -63,7 +68,7 @@ export function renderPaymentSummary() {
             <div class="payment-summary-money">$${formatCurrency(total)}</div>
         </div>
     
-        <button class="place-order-button button-primary">
+        <button class="place-order-button button-primary js-place-order-button">
             Place your order
         </button>
     `;
@@ -72,5 +77,11 @@ export function renderPaymentSummary() {
     document.querySelector('.js-payment-summary')
         .innerHTML = payment;
     
-    updateHeaderQuantity('.js-checkout-sum')
+    updateHeaderQuantity('.js-checkout-sum');
+
+    document.querySelector('.js-place-order-button')
+        .addEventListener('click', () => {
+            createOrder(cart);
+            window.location.href = 'orders.html';
+        });
 }
