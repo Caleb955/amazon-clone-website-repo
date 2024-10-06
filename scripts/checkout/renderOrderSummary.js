@@ -53,7 +53,7 @@ export function renderOrderSummary() {
 
             if (cartItem.productId === product.id) {
                 cartHTML += `
-                    <div class="cart-item-container js-cart-item-container-${product.id}">
+                    <div class="cart-item-container js-cart-item-container-${product.id} js-cart-item-container">
                         <div class="delivery-date">
                         Delivery date: ${dateString}
                         </div>
@@ -62,7 +62,7 @@ export function renderOrderSummary() {
                         <img class="product-image"
                             src=${product.image}>
 
-                        <div class="cart-item-details">
+                        <div class="cart-item-details js-cart-item-details-${product.id}">
                             <div class="product-name">
                             ${product.name}
                             </div>
@@ -76,7 +76,7 @@ export function renderOrderSummary() {
                             <span class="update-quantity-link link-primary">
                                 Update
                             </span>
-                            <span class="delete-quantity-link link-primary js-delete-quantity-link" data-product-id="${product.id}">
+                            <span class="delete-quantity-link link-primary js-delete-quantity-link js-delete-quantity-link-${product.id}" data-product-id="${product.id}">
                                 Delete
                             </span>
                             </div>
