@@ -83,7 +83,12 @@ export function renderPaymentSummary() {
         .addEventListener('click', () => {
             // here is the createOrder function that was called
 
-            createOrder(cart);
-            window.location.href = 'orders.html';
+
+            if (cart.length) {
+                createOrder(cart);
+                window.location.href = 'orders.html';
+            } else {
+                console.log('empty cart');
+            }
         });
 }

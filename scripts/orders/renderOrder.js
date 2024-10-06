@@ -10,7 +10,6 @@ export function runOrder() {
     if (localStorage.getItem('orderdata')) {
         document.querySelector('.js-orders-grid')
             .innerHTML = orderData;
-        console.log(true);
     } else {
         document.querySelector('.js-orders-grid')
             .innerHTML = `
