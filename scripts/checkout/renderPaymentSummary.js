@@ -6,7 +6,7 @@ import formatCurrency from "../utils/money.js";
 // these import code conflict with the test code so u can comment it and all the test will pass :)
 // and also the function createOrder that was run in the place your order button
 
-import { createOrder } from "../orders/Order.js";
+import { createOrder } from "../orders/renderOrder.js";
 
 export function renderPaymentSummary() {
     let productTotal = 0;
@@ -81,6 +81,8 @@ export function renderPaymentSummary() {
 
     document.querySelector('.js-place-order-button')
         .addEventListener('click', () => {
+            // here is the createOrder function that was called
+
             createOrder(cart);
             window.location.href = 'orders.html';
         });

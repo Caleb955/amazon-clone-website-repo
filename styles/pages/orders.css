@@ -218,3 +218,20 @@
     padding: 12px;
   }
 }
+
+.smile-icon {
+  width: 10%;
+  fill: rgb(240, 136, 4);
+}
+
+.notice-message {
+  font-size: 1rem;
+  color: rgb(240, 136, 4);
+}
+
+.notice-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-direction: column;
+}
