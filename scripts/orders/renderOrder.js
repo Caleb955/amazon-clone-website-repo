@@ -1,7 +1,7 @@
 import dayjs from '../../dayjs/index.js';
 import { products } from '../../data/products.js';
 import formatCurrency from '../utils/money.js';
-import { saveToStorage, updateHeaderQuantity } from '../../data/cart.js';
+import { saveToStorage, updateHeaderQuantity, addToCart } from '../../data/cart.js';
 import { deliveryOptions } from '../../data/deliveryOptions.js';
 
 let orderData = JSON.parse(localStorage.getItem('orderdata')) || '';
@@ -22,6 +22,16 @@ export function runOrder() {
     }
 
     updateHeaderQuantity('.js-cart-quantity');
+
+    document.querySelectorAll('.js-buy-again-button')
+    .forEach((button) => {
+        button.addEventListener('click', () => {
+            const {productId} = button.dataset;
+            
+            addToCart(productId);
+            updateHeaderQuantity('.js-cart-quantity');
+        });
+    });
 }
 
 const datePlaced = dayjs().format('MMMM, D');
@@ -69,7 +79,7 @@ export function createOrder(cart) {
             </div>
         </div>`;
 
-    saveToStorage('orderdata', orderData)
+    saveToStorage('orderdata', orderData);
 }
 
 function callProduct(param, param2) {
@@ -107,7 +117,7 @@ function callProduct(param, param2) {
                 <div class="product-quantity">
                     Quantity: ${detail.quantity}
                 </div>
-                <button class="buy-again-button button-primary">
+                <button class="buy-again-button button-primary js-buy-again-button" data-product-id="${detail.productId}">
                     <img class="buy-again-icon" src="images/icons/buy-again.png">
                     <span class="buy-again-message">Buy it again</span>
                 </button>
