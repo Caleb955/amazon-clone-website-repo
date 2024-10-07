@@ -82,4 +82,9 @@ export function updateHeaderQuantity(selector) {
 
     document.querySelector(selector)
       .innerHTML = cartQuantity;
-  }
+}
+
+export function resetCart() {
+    cart = [];
+    saveToStorage('cart', cart);
+}

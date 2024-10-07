@@ -40,6 +40,16 @@ class Clothing extends Product {
   }
 }
 
+export function findProducts(productId) {
+  const data = products.find((product) => {
+    if (product.id === productId) {
+      return product;
+    }
+  });
+
+  return data;
+}
+
 export function loadProductFetch() {
   const promise = 
   fetch('backend/products.json').then((response) => {

@@ -1,4 +1,4 @@
-import { updateHeaderQuantity, cart } from "../../data/cart.js";
+import { updateHeaderQuantity, cart, resetCart } from "../../data/cart.js";
 import { products } from "../../data/products.js";
 import { deliveryOptions } from "../../data/deliveryOptions.js";
 import formatCurrency from "../utils/money.js";
@@ -100,9 +100,10 @@ export function renderPaymentSummary() {
             if (cart.length) {
                 createOrder(cart);
                 window.location.href = 'orders.html';
+                resetCart();
             } else {
                 clearTimeout(timeoutId)
-                emptyCartElement.style.transition = 'transform .4s ease-in-out'
+                emptyCartElement.style.transition = 'transform .4s ease-in-out, opacity .2s ease-in-out'
                 emptyCartElement.style.transform = '';
                 emptyCartElement.style.opacity = '1';
 

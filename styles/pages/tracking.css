@@ -79,3 +79,18 @@
   border-radius: 50px;
   width: 50%;
 }
+
+main {
+  position: relative;
+}
+
+.warning-notice {
+  position: absolute;
+  background-color: hsl(60, 83%, 42%);
+  color: #fff;
+  font-weight: 600;
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  font-size: 1rem;
+}

@@ -44,9 +44,6 @@ export function createOrder(cart) {
         return matchingId;
     });
 
-    console.log(products);
-
-
     orderData += `
         <div class="order-container">
             <div class="order-header">
@@ -117,9 +114,9 @@ function callProduct(param, param2) {
             </div>
 
             <div class="product-actions">
-                <a href="tracking.html">
+                <a href="tracking.html?productId=${imageUrl.id}&quantity=${detail.quantity}&deliveryData=${detail.deliveryOptionId}">
                     <button class="track-package-button button-secondary">
-                    Track package
+                        Track package
                     </button>
                 </a>
             </div>
