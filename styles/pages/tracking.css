@@ -93,4 +93,5 @@ main {
   text-align: center;
   opacity: 0;
   font-size: 1rem;
+  pointer-events: none;
 }

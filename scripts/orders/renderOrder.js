@@ -36,8 +36,7 @@ export function runOrder() {
 
 const datePlaced = dayjs().format('MMMM, D');
 
-export function createOrder(cart) {
-    let total = 0;
+export function createOrder(cart, total) {
     let idConcat = '';
 
     const data = cart.map((cartItem) => {
@@ -48,7 +47,6 @@ export function createOrder(cart) {
             }
         });
 
-        total += matchingId.priceCents;
         idConcat += matchingId.id;
 
         return matchingId;

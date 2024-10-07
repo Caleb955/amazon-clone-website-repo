@@ -2,6 +2,8 @@ import { findProducts } from "../data/products.js";
 import { loadProductFetch } from "../data/products.js";
 import { updateHeaderQuantity } from "../data/cart.js";
 
+console.warn('deliveryTime is depreciated');
+
 const url = new URL(window.location);
 const productId = url.searchParams.get('productId');
 const quantity = url.searchParams.get('quantity');

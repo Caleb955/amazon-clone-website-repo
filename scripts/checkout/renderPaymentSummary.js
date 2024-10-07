@@ -31,7 +31,7 @@ export function renderPaymentSummary() {
             }
         });
 
-        productTotal += matchingId.priceCents;
+        productTotal += matchingId.priceCents * cartItem.quantity;
         shippingTotal += shipping;
         totalBeforeTax = productTotal + shippingTotal;
         tax = totalBeforeTax * 0.1;
@@ -98,7 +98,7 @@ export function renderPaymentSummary() {
 
 
             if (cart.length) {
-                createOrder(cart);
+                createOrder(cart, total);
                 window.location.href = 'orders.html';
                 resetCart();
             } else {
