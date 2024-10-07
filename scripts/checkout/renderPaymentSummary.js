@@ -79,6 +79,19 @@ export function renderPaymentSummary() {
     
     updateHeaderQuantity('.js-checkout-sum');
 
+    const emptyCartElement = document.querySelector('.js-empty-cart');
+
+    // the code here conflict with the test cause these is not part of the dom in which i did the test using jasmine so it will fail when these function is active anywhere on the page. do well to comment it. when checking the test
+
+    returnCartAlert();
+
+    function returnCartAlert() {
+        emptyCartElement.style.transform = 'translateY(-100%)';
+        emptyCartElement.style.opacity = '';
+    }
+
+    let timeoutId;
+
     document.querySelector('.js-place-order-button')
         .addEventListener('click', () => {
             // here is the createOrder function that was called
@@ -88,7 +101,14 @@ export function renderPaymentSummary() {
                 createOrder(cart);
                 window.location.href = 'orders.html';
             } else {
-                console.log('empty cart');
+                clearTimeout(timeoutId)
+                emptyCartElement.style.transition = 'transform .4s ease-in-out'
+                emptyCartElement.style.transform = '';
+                emptyCartElement.style.opacity = '1';
+
+                timeoutId = setTimeout(() => {
+                    returnCartAlert();
+                }, 2000);
             }
         });
 }

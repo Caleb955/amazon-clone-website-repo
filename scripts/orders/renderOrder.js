@@ -1,7 +1,7 @@
 import dayjs from '../../dayjs/index.js';
 import { products } from '../../data/products.js';
 import formatCurrency from '../utils/money.js';
-import { saveToStorage } from '../../data/cart.js';
+import { saveToStorage, updateHeaderQuantity } from '../../data/cart.js';
 import { deliveryOptions } from '../../data/deliveryOptions.js';
 
 let orderData = JSON.parse(localStorage.getItem('orderdata')) || '';
@@ -20,6 +20,8 @@ export function runOrder() {
                 </div>
             `;
     }
+
+    updateHeaderQuantity('.js-cart-quantity');
 }
 
 const datePlaced = dayjs().format('MMMM, D');

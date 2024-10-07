@@ -209,3 +209,18 @@
   margin-top: 11px;
   margin-bottom: 15px;
 }
+
+.empty-notice-container {
+  position: relative;
+}
+
+.empty-notice {
+  background-color: red;
+  color: #fff;
+  padding: 4px;
+  font-size: 1rem;
+  position: absolute;
+  right: 0;
+  left: 0;
+  opacity: 0;
+}

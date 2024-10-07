@@ -1,5 +1,5 @@
 import { products } from "../../data/products.js";
-import { cart, removeFromCart, updateDeliveryOption } from "../../data/cart.js";
+import { cart, removeFromCart, updateDeliveryOption, updateHeaderQuantity } from "../../data/cart.js";
 import dayjs from '../../dayjs/index.js';
 import { deliveryOptions } from "../../data/deliveryOptions.js";
 import formatCurrency from "../utils/money.js";
@@ -8,6 +8,7 @@ import { renderPaymentSummary } from "./renderPaymentSummary.js";
 
 
 export function renderOrderSummary() {
+
     let cartHTML = '';
     
     cart.forEach((cartItem) => {
@@ -153,6 +154,9 @@ export function renderOrderSummary() {
             renderPaymentSummary();
         });
     });
+
+    // these will also cause the test to fail cause these dom is not present in the test
+    updateHeaderQuantity('.js-cart-quantity')
 
     document.querySelectorAll('.js-delivery-option')
         .forEach((option) => {
